@@ -1,0 +1,15 @@
+{
+  "name": "sduproxy-backend",
+  "version": "1.0.0",
+  "description": "用于在个人服务器上通过easyconnect实现对校内网的公网映射的快速设置端口的后端koa服务器",
+  "main": "index.js",
+  "author": "CrazyHer",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "koa": "^2.13.1"
+  }
+}
