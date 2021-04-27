@@ -1,0 +1,11 @@
+import Router = require('@koa/router');
+import add from './add';
+import del from './del';
+import getlist from './getlist';
+import login from './login';
+const route = new Router();
+route.post('/login', login);
+route.get('/getlist', getlist);
+route.post('/add', add);
+route.post('/del', del);
+export default route;

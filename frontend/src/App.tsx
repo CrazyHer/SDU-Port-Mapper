@@ -216,6 +216,7 @@ const App = (props: any) => {
                   proxyPass: e.proxy_pass,
                   optherOptions: e.otherOptions,
                 },
+                comment: e.comment,
               })
             }>
             <Form.Item
