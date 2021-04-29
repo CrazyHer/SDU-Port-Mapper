@@ -1,4 +1,4 @@
-# SDU 校内端口映射管理平台 (SDU Port Mapping)
+# 山东大学 校园网端口映射管理平台 (SDU Port Mapping)
 
 项目地址：
 
