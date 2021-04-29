@@ -11,5 +11,14 @@
     "hostname": "",
     "port": 6379,
     "password": ""
+  },
+  "smtp": {
+    "host": "",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "",
+      "pass": ""
+    }
   }
 }

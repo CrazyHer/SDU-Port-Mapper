@@ -1,14 +1,3 @@
 .App {
   text-align: center;
 }
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.header > h1 {
-  color: white;
-}
-.header h3 {
-  color: white;
-}

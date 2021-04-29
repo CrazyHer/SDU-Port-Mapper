@@ -13,10 +13,11 @@ export default async (ctx: Context) => {
       .toString(36)
       .substr(2)}`;
     // redis设置token与email的一一映射
-    redis
+    await redis
       .pipeline()
       .setex(email, 86400, token)
-      .setex(token, 86400, email);
+      .setex(token, 86400, email)
+      .exec();
     ctx.body = {
       code: 0,
       data: { token: token },

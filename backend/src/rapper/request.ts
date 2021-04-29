@@ -1,4 +1,4 @@
-/* md5: 3d92a0247b6dd5694b97fc27aea286c7 */
+/* md5: 733af5e6064edda346009a37d7ac088e */
 /* Rap仓库id: 282201 */
 /* Rapper版本: 1.2.0 */
 /* eslint-disable */
@@ -124,6 +124,20 @@ export interface IModels {
       message: string
     }
   }
+
+  /**
+   * 接口名：sendcode
+   * Rap 地址: http://rap2.taobao.org/repository/editor?id=282201&mod=453464&itf=1954390
+   */
+  'POST/sendcode': {
+    Req: {
+      email: string
+    }
+    Res: {
+      code: number
+      message: string
+    }
+  }
 }
 
 type ResSelector<T> = T
@@ -134,6 +148,7 @@ export interface IResponseTypes {
   'POST/add': ResSelector<IModels['POST/add']['Res']>
   'POST/del': ResSelector<IModels['POST/del']['Res']>
   'POST/register': ResSelector<IModels['POST/register']['Res']>
+  'POST/sendcode': ResSelector<IModels['POST/sendcode']['Res']>
 }
 
 export function createFetch(fetchConfig: commonLib.RequesterOption, extraConfig?: {fetchType?: commonLib.FetchType}) {
@@ -218,6 +233,21 @@ export function createFetch(fetchConfig: commonLib.RequesterOption, extraConfig?
         params: req,
         extra,
       }) as Promise<IResponseTypes['POST/register']>
+    },
+
+    /**
+     * 接口名：sendcode
+     * Rap 地址: http://rap2.taobao.org/repository/editor?id=282201&mod=453464&itf=1954390
+     * @param req 请求参数
+     * @param extra 请求配置项
+     */
+    'POST/sendcode': (req?: IModels['POST/sendcode']['Req'], extra?: commonLib.IExtra) => {
+      return rapperFetch({
+        url: '/sendcode',
+        method: 'POST',
+        params: req,
+        extra,
+      }) as Promise<IResponseTypes['POST/sendcode']>
     },
   }
 }

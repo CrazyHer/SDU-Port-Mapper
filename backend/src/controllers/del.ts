@@ -8,10 +8,11 @@ export default async (ctx: Context) => {
   try {
     const user = await authToken(ctx.request.header.token as any);
     if (user) {
-      const { outerPort } = ctx.body as Models['POST/del']['Req'];
+      const { outerPort } = ctx.request.body as Models['POST/del']['Req'];
       // 用户只能删除自己创建的配置
-      if (user === (await getProxy(outerPort))?.creator) {
-        await delProxy(outerPort);
+      const theProxy = await getProxy(outerPort);
+      if (user === theProxy?.creator) {
+        await delProxy(outerPort, theProxy.type as 'http' | 'stream', user);
         ctx.body = { code: 0, message: 'success' } as Models['POST/del']['Res'];
       } else {
         ctx.body = { code: -1, message: '无权限' } as Models['POST/del']['Res'];
