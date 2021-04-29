@@ -1,6 +1,7 @@
 import { action, makeAutoObservable } from 'mobx';
+import { FETCH_ROOT_URL } from '../constants/fetch';
 import { overrideFetch } from '../rapper';
-export const FETCH_ROOT_URL = 'https://sdu.herui.club/api';
+
 export default class User {
   constructor() {
     makeAutoObservable(this);
