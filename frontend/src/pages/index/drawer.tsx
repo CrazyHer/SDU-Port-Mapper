@@ -131,7 +131,11 @@ const HDrawer = (props: any) => {
             <Input.TextArea autoSize />
           </Form.Item>
           <Form.Item>
-            <Button loading={loading} htmlType='submit' type='primary'>
+            <Button
+              loading={loading}
+              htmlType='submit'
+              type='primary'
+              style={{ marginRight: '1em' }}>
               提交
             </Button>
             <Button
