@@ -105,6 +105,7 @@ const HTable = (props: any) => {
       columns={columns}
       dataSource={data?.map((v) => ({ ...v, key: v.outerPort }))}
       scroll={{ x: '100%' }}
+      pagination={{ pageSize: 5, hideOnSinglePage: true }}
     />
   );
 };
