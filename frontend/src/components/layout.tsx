@@ -80,6 +80,8 @@ const HLayout = (props: any) => {
       const res = await fetch['POST/sendcode'](e);
       if (res.code === 0) {
         setHasSent(true);
+      } else {
+        message.error(`发送失败！${res.message}`);
       }
     } catch (error) {
       console.error(error);

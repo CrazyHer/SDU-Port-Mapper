@@ -31,7 +31,7 @@ const delProxy = (
         ps.on('exit', async (code, sig) => {
           if (code === 0) {
             await mysql.execute(
-              'UPDATE `sduproxy`.`user` SET remains = remains-1 WHERE (`mail` = ?);',
+              'UPDATE `sduproxy`.`user` SET remains = remains+1 WHERE (`mail` = ?);',
               [creator]
             );
             resolve();
