@@ -94,6 +94,10 @@ const HDrawer = (props: any) => {
                 pattern: RegExp('^(?!.*?[{\\\\};]).*$'),
                 message: '非法格式!',
               }, //不允许输入 \ { } ;字符
+              {
+                pattern: RegExp('(?<!/)$'),
+                message: '不需要以/结尾',
+              },
             ]}>
             <Input
               onChange={(e) => {
