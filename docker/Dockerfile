@@ -1,9 +1,9 @@
 FROM hagb/docker-easyconnect:cli
 
-RUN apt update &&\
+RUN apt update -y &&\
     apt install -y curl &&\
     curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - &&\
-    apt install -y nodejs nginx nohup
+    apt install -y nodejs nginx
 
 RUN rm -f /etc/nginx/nginx.conf &&\
     mkdir /etc/nginx/http &&\
