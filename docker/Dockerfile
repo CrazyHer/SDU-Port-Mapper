@@ -19,6 +19,6 @@ COPY ./config.json /usr/share/backend/config.json
 
 COPY ./start-service.sh /usr/local/bin/start-service.sh
 
-VOLUME [ "/root/", "/usr/share/backend/config.json", "/usr/share/sangfor/EasyConnect/resources/logs/", "/var/log/nginx/", "/etc/nginx/http/", "/etc/nginx/stream/" ]
+VOLUME [ "/root/", "/usr/share/backend/", "/usr/share/sangfor/EasyConnect/resources/logs/", "/var/log/nginx/", "/etc/nginx/http/", "/etc/nginx/stream/" ]
 
 CMD ["start-service.sh && start.sh"]
