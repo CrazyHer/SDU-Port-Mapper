@@ -23,4 +23,4 @@ RUN chmod +x /usr/local/bin/start-service.sh && ln -s /root/config.json /usr/sha
 
 VOLUME [ "/root/", "/usr/share/backend/", "/usr/share/sangfor/EasyConnect/resources/logs/", "/var/log/nginx/", "/etc/nginx/http/", "/etc/nginx/stream/" ]
 
-CMD ["start-service.sh && start.sh"]
+CMD ["start-service.sh"]
