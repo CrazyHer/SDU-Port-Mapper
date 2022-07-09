@@ -1,10 +1,10 @@
 const path = require('path');
-
 const { name } = require('./package.json');
+
 module.exports = {
   mode: 'production',
   entry: {
-    app: './src/index.ts',
+    app: './index.ts',
   },
   target: 'node',
   output: {

@@ -1,8 +1,11 @@
+import fs from 'fs-extra';
+
 /**
- * 从环境变量中获取config
+ * 1. 优先使用同目录下的配置文件config.json
+ * 2. 若无，则读取JSON格式的环境变量env.sduproxy_config
+ * 3. 都没有，则抛出异常，退出程序
  */
 const getConfig = (): {
-  port: number;
   mysql: {
     hostname: string;
     port: number;
@@ -14,6 +17,7 @@ const getConfig = (): {
     hostname: string;
     port: number;
     password: string;
+    db: number;
   };
   smtp: {
     host: string;
@@ -25,30 +29,15 @@ const getConfig = (): {
     };
   };
 } => {
-  return {
-    port: 2333,
-    mysql: {
-      hostname: '',
-      port: 3306,
-      username: '',
-      password: '',
-      database: '',
-    },
-    redis: {
-      hostname: '',
-      port: 6379,
-      password: '',
-    },
-    smtp: {
-      host: '',
-      port: 465,
-      secure: true,
-      auth: {
-        user: '',
-        pass: '',
-      },
-    },
-  };
+  const configFile = './config.json';
+
+  if (fs.existsSync(configFile)) {
+    return fs.readJsonSync(configFile);
+  } else if (process.env.sduproxy_config) {
+    return JSON.parse(process.env.sduproxy_config);
+  }
+
+  throw new Error('没有检测到配置文件! ');
 };
 
 export default getConfig();

@@ -1,11 +1,13 @@
-import Redis = require('ioredis');
-import config = require('../../config.json');
-const { hostname, password, port } = config.redis;
+import Redis from 'ioredis';
+import config from '../utils/configProvider';
+
+const { hostname, password, port, db } = config.redis;
 const redis = new Redis({
   host: hostname,
-  password: password,
-  port: port,
-  maxRetriesPerRequest: 10,
+  password,
+  port,
+  maxRetriesPerRequest: 5,
+  db,
 });
 
 export default redis;

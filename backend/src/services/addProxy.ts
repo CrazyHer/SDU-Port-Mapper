@@ -25,24 +25,22 @@ const addProxy = (
       proxy_pass  ${proxy_pass};
     }
   }`;
-        fs.writeFile(
-          path.join('/root', '.config/easyconnect/http', `${outerPort}`),
-          config
-        )
+        fs.writeFile(path.join('/etc/nginx', 'http', `${outerPort}`), config)
           .then(() => {
             // 让nginx载入新配置
-            const ps = child.exec(
-              'docker exec -i easyconnect nginx -s reload',
-              (err, stdout, stderr) => {
-                if (err || stderr) {
-                  console.error(err, stderr);
-                  reject(err || stderr);
-                }
+            const ps = child.exec('nginx -s reload', (err, stdout, stderr) => {
+              if (err || stderr) {
+                console.error(err, stderr);
+                reject(err || stderr);
               }
-            );
+            });
             ps.on('error', (err) => {
               fs.rm(
-                path.join('/root', '.config/easyconnect/http', `${outerPort}`)
+                path.join(
+                  '/etc/nginx',
+                  '.config/easyconnect/http',
+                  `${outerPort}`
+                )
               );
               reject(err.message);
             });
@@ -69,9 +67,7 @@ const addProxy = (
                   .then(() => resolve())
                   .catch(reject);
               } else {
-                fs.rm(
-                  path.join('/root', '.config/easyconnect/http', `${outerPort}`)
-                );
+                fs.rm(path.join('/etc/nginx', 'http', `${outerPort}`));
                 reject('nginx配置异常');
               }
             });
@@ -85,25 +81,17 @@ const addProxy = (
                   proxy_pass ${proxy_pass};
                   ${otherOptions}
           }`;
-        fs.writeFile(
-          path.join('/root', '.config/easyconnect/stream', `${outerPort}`),
-          config
-        )
+        fs.writeFile(path.join('/etc/nginx', 'stream', `${outerPort}`), config)
           .then(() => {
             // 让nginx载入新配置
-            const ps = child.exec(
-              'docker exec -i easyconnect nginx -s reload',
-              (err, stdout, stderr) => {
-                if (err || stderr) {
-                  console.error(err, stderr);
-                  reject(err || stderr);
-                }
+            const ps = child.exec('nginx -s reload', (err, stdout, stderr) => {
+              if (err || stderr) {
+                console.error(err, stderr);
+                reject(err || stderr);
               }
-            );
+            });
             ps.on('error', (err) => {
-              fs.rm(
-                path.join('/root', '.config/easyconnect/stream', `${outerPort}`)
-              );
+              fs.rm(path.join('/etc/nginx', 'stream', `${outerPort}`));
               reject(err.message);
             });
             ps.on('exit', (code, sig) => {
@@ -129,13 +117,7 @@ const addProxy = (
                   .then(() => resolve())
                   .catch(reject);
               } else {
-                fs.rm(
-                  path.join(
-                    '/root',
-                    '.config/easyconnect/stream',
-                    `${outerPort}`
-                  )
-                );
+                fs.rm(path.join('/etc/nginx', 'stream', `${outerPort}`));
                 reject('nginx配置异常,注意stream类型必须带上端口');
               }
             });

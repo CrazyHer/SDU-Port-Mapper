@@ -2,7 +2,6 @@ import child from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import mysql from '../utils/mysql';
-import getProxy from './getProxy';
 
 const delProxy = (
   outerPort: number,
@@ -15,18 +14,13 @@ const delProxy = (
         outerPort,
       ])
       .then(() => {
-        fs.rmSync(
-          path.join('/root', '.config/easyconnect', type, `${outerPort}`)
-        );
-        const ps = child.exec(
-          'docker exec -i easyconnect nginx -s reload',
-          (err, stdout, stderr) => {
-            if (err || stderr) {
-              console.error(err, stderr);
-              reject(err || stderr);
-            }
+        fs.rmSync(path.join('/etc/nginx', type, `${outerPort}`));
+        const ps = child.exec('nginx -s reload', (err, stdout, stderr) => {
+          if (err || stderr) {
+            console.error(err, stderr);
+            reject(err || stderr);
           }
-        );
+        });
         ps.on('error', reject);
         ps.on('exit', async (code, sig) => {
           if (code === 0) {
