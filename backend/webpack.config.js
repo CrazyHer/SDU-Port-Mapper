@@ -4,7 +4,7 @@ const { name } = require('./package.json');
 module.exports = {
   mode: 'production',
   entry: {
-    app: './index.ts',
+    app: './src/index.ts',
   },
   target: 'node',
   output: {
