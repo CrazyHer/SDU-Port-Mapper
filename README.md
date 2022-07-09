@@ -63,7 +63,7 @@ docker run --device /dev/net/tun --cap-add NET_ADMIN -ti \
         -p 5999-6050:5999-6050 \
         -e EC_VER=7.6.3 \
         -e CLI_OPTS="-d vpnaddress -u username -p password" \
-        -v $HOME/.config/sdu-port-mapper/config.json:/usr/share/backend/config.json \
+        -v $HOME/.config/sdu-port-mapper:/root \
         --name sdu-port-mapper \
         -d crazyher/sdu-port-mapper
 ```
