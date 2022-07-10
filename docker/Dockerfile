@@ -15,12 +15,10 @@ COPY ./frontend-build /usr/share/frontend
 
 COPY ./backend-build /usr/share/backend
 
-COPY ./config.json /root/config.json
-
 COPY ./start-service.sh /usr/local/bin/start-service.sh
 
 RUN chmod +x /usr/local/bin/start-service.sh && ln -s /root/config.json /usr/share/backend/config.json 
 
-VOLUME [ "/root/", "/usr/share/backend/", "/usr/share/sangfor/EasyConnect/resources/logs/", "/var/log/nginx/", "/etc/nginx/http/", "/etc/nginx/stream/" ]
+VOLUME [ "/root/", "/usr/share/sangfor/EasyConnect/resources/logs/", "/var/log/nginx/", "/etc/nginx/http/", "/etc/nginx/stream/" ]
 
 CMD ["start-service.sh"]
