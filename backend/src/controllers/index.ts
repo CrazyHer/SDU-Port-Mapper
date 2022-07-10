@@ -1,4 +1,4 @@
-import Router = require('@koa/router');
+import Router from '@koa/router';
 import add from './add';
 import del from './del';
 import getlist from './getlist';

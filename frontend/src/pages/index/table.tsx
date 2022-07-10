@@ -76,22 +76,16 @@ const HTable = (props: any) => {
               type='link'
               onClick={async () => {
                 try {
-                  if (record.type === 'http') {
-                    copy(`http://sdu.herui.club:${record.outerPort}`);
-                    message.success(
-                      `成功复制http://sdu.herui.club:${record.outerPort}到剪切板`
-                    );
-                  } else {
-                    copy(`sdu.herui.club:${record.outerPort}`);
-                    message.success(
-                      `成功复制sdu.herui.club:${record.outerPort}到剪切板`
-                    );
-                  }
+                  copy(`${window.location.hostname}:${record.outerPort}`);
+                  message.success(
+                    `成功复制${window.location.hostname}:${record.outerPort}到剪切板`
+                  );
                 } catch (error) {
                   message.error('复制失败! 怕不是浏览器不支持QAQ');
                   console.error(error);
                 }
-              }}>
+              }}
+            >
               复制地址
             </Button>
           </span>

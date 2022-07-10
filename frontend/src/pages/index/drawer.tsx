@@ -36,14 +36,16 @@ const HDrawer = (props: any) => {
       <Button
         type='primary'
         style={{ float: 'right' }}
-        onClick={() => setDrawerVisible(true)}>
+        onClick={() => setDrawerVisible(true)}
+      >
         添加
       </Button>
       <Drawer
         title='端口映射配置'
         visible={drawerVisible}
         onClose={() => setDrawerVisible(false)}
-        width='300px'>
+        width='300px'
+      >
         <Form
           labelCol={{ span: 9 }}
           labelAlign='left'
@@ -59,7 +61,8 @@ const HDrawer = (props: any) => {
               },
               comment: e.comment,
             })
-          }>
+          }
+        >
           <Form.Item
             name='outerPort'
             label='端口号'
@@ -72,14 +75,16 @@ const HDrawer = (props: any) => {
                 max: 6050,
                 message: '端口号介于6000-6050之间',
               },
-            ]}>
+            ]}
+          >
             <Input type='number' min={6000} max={6050} />
           </Form.Item>
           <Form.Item
             name='type'
             label='映射类型'
             initialValue='stream'
-            rules={[{ required: true }]}>
+            rules={[{ required: true }]}
+          >
             <Select>
               <Select.Option value='stream'> stream </Select.Option>
               <Select.Option value='http'> http </Select.Option>
@@ -98,7 +103,8 @@ const HDrawer = (props: any) => {
                 pattern: RegExp('(?<!/)$'),
                 message: '不需要以/结尾',
               },
-            ]}>
+            ]}
+          >
             <Input
               onChange={(e) => {
                 if (form.getFieldValue('type') === 'http') {
@@ -106,9 +112,9 @@ const HDrawer = (props: any) => {
                     otherOptions: `proxy_set_header Upgrade $http_upgrade;
   proxy_set_header Connection upgrade;
   proxy_set_header Accept-Encoding "";
-  sub_filter '${form.getFieldValue(
-    'proxy_pass'
-  )}' 'http://sdu.herui.club:${form.getFieldValue('outerPort')}';
+  sub_filter '${form.getFieldValue('proxy_pass')}' 'http://${
+                      window.location.hostname
+                    }:${form.getFieldValue('outerPort')}';
   sub_filter_once off;`,
                   });
                 } else {
@@ -125,13 +131,15 @@ const HDrawer = (props: any) => {
                 pattern: RegExp('^(?!.*?[{\\\\}]).*$', 's'),
                 message: '非法格式!',
               },
-            ]}>
+            ]}
+          >
             <Input.TextArea autoSize />
           </Form.Item>
           <Form.Item
             name='comment'
             label='备注'
-            rules={[{ required: true, message: '请输入备注信息' }]}>
+            rules={[{ required: true, message: '请输入备注信息' }]}
+          >
             <Input.TextArea autoSize />
           </Form.Item>
           <Form.Item>
@@ -139,7 +147,8 @@ const HDrawer = (props: any) => {
               loading={loading}
               htmlType='submit'
               type='primary'
-              style={{ marginRight: '1em' }}>
+              style={{ marginRight: '1em' }}
+            >
               提交
             </Button>
             <Button
@@ -147,7 +156,8 @@ const HDrawer = (props: any) => {
               onClick={(e) => {
                 e.preventDefault();
                 setDrawerVisible(false);
-              }}>
+              }}
+            >
               取消
             </Button>
           </Form.Item>

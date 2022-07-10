@@ -1,6 +1,6 @@
 const path = require('path');
-
 const { name } = require('./package.json');
+
 module.exports = {
   mode: 'production',
   entry: {

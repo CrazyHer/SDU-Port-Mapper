@@ -2,7 +2,7 @@ import { Models } from '../rapper';
 import mysql from '../utils/mysql';
 
 const getProxies = async (): Promise<Models['GET/getlist']['Res']['data']> => {
-  const [rows]: any = await mysql.execute('SELECT * FROM sduproxy.proxylist;');
+  const [rows]: any = await mysql.execute('SELECT * FROM proxylist;');
   const data: Models['GET/getlist']['Res']['data'] = [];
   for (let i = 0; i < rows.length; i++) {
     data.push({
