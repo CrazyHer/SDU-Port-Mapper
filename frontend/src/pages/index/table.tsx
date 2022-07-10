@@ -76,9 +76,9 @@ const HTable = (props: any) => {
               type='link'
               onClick={async () => {
                 try {
-                  copy(`sdu.herui.club:${record.outerPort}`);
+                  copy(`${window.location.hostname}:${record.outerPort}`);
                   message.success(
-                    `成功复制sdu.herui.club:${record.outerPort}到剪切板`
+                    `成功复制${window.location.hostname}:${record.outerPort}到剪切板`
                   );
                 } catch (error) {
                   message.error('复制失败! 怕不是浏览器不支持QAQ');

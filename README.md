@@ -22,25 +22,26 @@
 
 ## 部署使用
 
-在`~/.config/sdu-port-mapper/`下创建并填写`config.json`配置文件（注意删除注释）:
+在 `~/.config/sdu-port-mapper/`下创建并填写 `config.json`配置文件（注意删除注释）:
 
 ```json
 // backend/config.json
 {
   "mysql": {
     //mysql数据库的配置项，用于存储用户信息和端口映射数据，数据库表结构在backend/MysqlSchema.sql中给出，使用mysql执行该文件即可自动创建初始化库表
+    //如果要连接本机的mysql，则这里的hostname填docker eth的IP
     "hostname": "",
     "port": 3306,
     "username": "",
     "password": "",
-    "database": ""
+    "database": "sdu_port_mapper"
   },
   "redis": {
     //redis数据库，用于存取token进行注册和登录信息验证
     "hostname": "",
     "port": 6379,
     "password": "",
-    "db": 233
+    "db": 2
   },
   "smtp": {
     //smtp邮件服务器配置，用于发送邮件验证码完成注册
@@ -70,7 +71,7 @@ docker run --device /dev/net/tun --cap-add NET_ADMIN -ti \
 
 参数解释：
 `-p 8081:80`
-前端页面端口，通过访问 http://本机 IP:8081 进入平台
+管理平台前端页面端口，通过访问 http://本机 IP:8081 进入平台
 
 `-p 5999-6050:5999-6050`
 暴露容器内可供配置的端口
@@ -80,7 +81,7 @@ vpnaddress 填 easyconnect 的 VPN 服务器地址，例如山大为 https://vpn
 
 ## 源码介绍
 
-如果有修改的需要，可以参考此部分对源码进行修改并重新 build 打包
+如果有修改的需要，可以参考此部分对源码进行修改并重新 build 打包构建 docker 镜像
 
 ### 前端部分
 
@@ -120,3 +121,21 @@ export const FETCH_ROOT_URL = '/api';
 打包为单文件：`yarn build`
 
 更新 rap 接口定义：`yarn rapper`
+
+### Docker 部分
+
+对前后端打包后分别将 build 移至 `docker/`下，执行 `docker build`进行构建：
+
+```bash
+cd backend
+yarn && yarn build
+cp -r build ../docker/backend-build
+
+cd ../frontend
+yarn && yarn build
+cp -r build ../docker/frontend-build
+
+cd ../docker
+docker build --pull -t xxx/sdu-port-mapper .
+
+```

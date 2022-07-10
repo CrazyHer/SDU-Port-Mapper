@@ -24,7 +24,7 @@ export default async (ctx: Context) => {
     }
     // 新用户只能配置3个端口
     await mysql.execute(
-      'INSERT INTO `sduproxy`.`user` (`mail`, `password`, `remains`) VALUES (?, ?, ?);',
+      'INSERT INTO `user` (`mail`, `password`, `remains`) VALUES (?, ?, ?);',
       [email, password, 3]
     );
     ctx.body = {

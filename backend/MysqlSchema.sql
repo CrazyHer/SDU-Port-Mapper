@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `sduproxy` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sduproxy`;
+CREATE DATABASE  IF NOT EXISTS `sdu_port_mapper` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sdu_port_mapper`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: tencent.herui.club    Database: sduproxy
+-- Host: tencent.herui.club    Database: sdu_port_mapper
 -- ------------------------------------------------------
 -- Server version	8.0.23
 

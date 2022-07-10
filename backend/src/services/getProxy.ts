@@ -12,10 +12,9 @@ const getProxy = async (
 } | null> => {
   const [
     rows,
-  ]: any = await mysql.execute(
-    'SELECT * FROM sduproxy.proxylist where outerPort = ?;',
-    [outerPort]
-  );
+  ]: any = await mysql.execute('SELECT * FROM proxylist where outerPort = ?;', [
+    outerPort,
+  ]);
   if (rows[0]) {
     return {
       outerPort: rows[0].outerPort,

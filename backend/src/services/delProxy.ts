@@ -10,9 +10,7 @@ const delProxy = (
 ) =>
   new Promise<void>((resolve, reject) => {
     mysql
-      .execute('DELETE FROM `sduproxy`.`proxylist` WHERE (`outerPort` = ?);', [
-        outerPort,
-      ])
+      .execute('DELETE FROM `proxylist` WHERE (`outerPort` = ?);', [outerPort])
       .then(() => {
         fs.rmSync(path.join('/etc/nginx', type, `${outerPort}`));
         const ps = child.exec('nginx -s reload', (err, stdout, stderr) => {
@@ -25,7 +23,7 @@ const delProxy = (
         ps.on('exit', async (code, sig) => {
           if (code === 0) {
             await mysql.execute(
-              'UPDATE `sduproxy`.`user` SET remains = remains+1 WHERE (`mail` = ?);',
+              'UPDATE `user` SET remains = remains+1 WHERE (`mail` = ?);',
               [creator]
             );
             resolve();

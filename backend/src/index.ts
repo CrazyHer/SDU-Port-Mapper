@@ -5,7 +5,7 @@ import router from './controllers';
 import mysql from './utils/mysql';
 import redis from './utils/redis';
 
-const port = 6001;
+const port = 2333;
 const testConnection = async () => {
   // 测试mysql连接
   await mysql

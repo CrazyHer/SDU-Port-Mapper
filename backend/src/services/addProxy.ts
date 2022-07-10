@@ -19,7 +19,6 @@ const addProxy = (
       if (type === 'http') {
         const config = `server {
     listen ${outerPort};
-    server_name sdu.herui.club;
     location / {
       ${otherOptions}
       proxy_pass  ${proxy_pass};
@@ -48,7 +47,7 @@ const addProxy = (
               if (code === 0) {
                 mysql
                   .execute(
-                    'INSERT INTO `sduproxy`.`proxylist` (`outerPort`, `innerAdress`, `type`, `comment`, `creator`, `otherOptions`) VALUES (?, ?, ?, ?, ?, ?)',
+                    'INSERT INTO `proxylist` (`outerPort`, `innerAdress`, `type`, `comment`, `creator`, `otherOptions`) VALUES (?, ?, ?, ?, ?, ?)',
                     [
                       outerPort,
                       proxy_pass,
@@ -60,7 +59,7 @@ const addProxy = (
                   )
                   .then(() =>
                     mysql.execute(
-                      'UPDATE `sduproxy`.`user` SET remains = remains-1 WHERE (`mail` = ?);',
+                      'UPDATE `user` SET remains = remains-1 WHERE (`mail` = ?);',
                       [creator]
                     )
                   )
@@ -98,7 +97,7 @@ const addProxy = (
               if (code === 0) {
                 mysql
                   .execute(
-                    'INSERT INTO `sduproxy`.`proxylist` (`outerPort`, `innerAdress`, `type`, `comment`, `creator`, `otherOptions`) VALUES (?, ?, ?, ?, ?, ?)',
+                    'INSERT INTO `proxylist` (`outerPort`, `innerAdress`, `type`, `comment`, `creator`, `otherOptions`) VALUES (?, ?, ?, ?, ?, ?)',
                     [
                       outerPort,
                       proxy_pass,
@@ -110,7 +109,7 @@ const addProxy = (
                   )
                   .then(() =>
                     mysql.execute(
-                      'UPDATE `sduproxy`.`user` SET remains = remains-1 WHERE (`mail` = ?);',
+                      'UPDATE `user` SET remains = remains-1 WHERE (`mail` = ?);',
                       [creator]
                     )
                   )
