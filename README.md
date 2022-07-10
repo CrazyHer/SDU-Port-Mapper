@@ -1,12 +1,16 @@
 # 山东大学 校园网公网端口映射 (SDU Port Mapper)
 
+Github: 
+
+[https://github.com/CrazyHer/SDU-Port-Mapper](https://github.com/CrazyHer/SDU-Port-Mapper)
+
 项目地址：
 
 [https://sdu.herui.club](https://sdu.herui.club)
 
 Docker Image:
 
-[https://hub.docker.com/repository/docker/crazyher/sdu-port-mapper](https://hub.docker.com/repository/docker/crazyher/sdu-port-mapper)
+[https://hub.docker.com/r/crazyher/sdu-port-mapper](https://hub.docker.com/r/crazyher/sdu-port-mapper)
 
 鸣谢：
 
